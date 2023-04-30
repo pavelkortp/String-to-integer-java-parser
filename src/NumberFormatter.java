@@ -9,8 +9,6 @@ public class NumberFormatter {
 
         //convert string number to char massive chars
         char[] chars = number.toCharArray();
-        //create mass int which will be contained piece of final number
-        int[] pieces = new int[number.length()];
         //return value
         int finalResult = 0;
         //difference in length
@@ -19,8 +17,8 @@ public class NumberFormatter {
             delta = 1;
         }
         //construct from pieces to final result number
-        for (int i = delta; i < pieces.length; i++) {
-            finalResult = (int) (finalResult +  (chars[i] -48) * Math.pow(10, pieces.length - 1 - i));
+        for (int i = delta; i < chars.length; i++) {
+            finalResult = (int) (finalResult +  (chars[i] -48) * Math.pow(10, chars.length - 1 - i));
         }
         // last check if number have exactly minus
         if (number.contains("-")) {
