@@ -1,5 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        int a = NumberFormatter.parseInt("1234");
+        System.out.println(a);
+
+        String b = String.valueOf(a);
     }
 }
