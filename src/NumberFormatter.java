@@ -18,34 +18,9 @@ public class NumberFormatter {
         if (number.contains("+") || number.contains("-")) {
             delta = 1;
         }
-
-        //find number by symbol and put in into inm mas pieces
-        for (int i = delta; i < number.length(); i++) {
-            if (chars[i] == '0') {
-                pieces[i] = 0;
-            } else if (chars[i] == '1') {
-                pieces[i] = 1;
-            } else if (chars[i] == '2') {
-                pieces[i] = 2;
-            } else if (chars[i] == '3') {
-                pieces[i] = 3;
-            } else if (chars[i] == '4') {
-                pieces[i] = 4;
-            } else if (chars[i] == '5') {
-                pieces[i] = 5;
-            } else if (chars[i] == '6') {
-                pieces[i] = 6;
-            } else if (chars[i] == '7') {
-                pieces[i] = 7;
-            } else if (chars[i] == '8') {
-                pieces[i] = 8;
-            } else {
-                pieces[i] = 9;
-            }
-        }
         //construct from pieces to final result number
-        for (int i = 0; i < pieces.length; i++) {
-            finalResult = (int) (finalResult + pieces[i] * Math.pow(10, pieces.length - 1 - i));
+        for (int i = delta; i < pieces.length; i++) {
+            finalResult = (int) (finalResult +  (chars[i] -48) * Math.pow(10, pieces.length - 1 - i));
         }
         // last check if number have exactly minus
         if (number.contains("-")) {
@@ -57,7 +32,7 @@ public class NumberFormatter {
     public static String valueOf(int number) {
         //return value
         String finalResult = "";
-        //length on number
+        //length of number
         int length = 0;
         //check if number smaller then 0
         if (number < 0) {
@@ -89,6 +64,7 @@ public class NumberFormatter {
         }
 
         //find piece of number
+        StringBuilder finalResultBuilder = new StringBuilder(finalResult);
         for (int i = 0; i < length; i++) {
 
             int divider = (int) (number / Math.pow(10, length - i - 1));
@@ -96,37 +72,37 @@ public class NumberFormatter {
             number = (int) (number - divider * pow(10, length - i - 1));
 
             if (divider == 1) {
-                finalResult = finalResult + "1";
+                finalResultBuilder.append("1");
 
             } else if (divider == 2) {
-                finalResult = finalResult + "2";
+                finalResultBuilder.append("2");
 
             } else if (divider == 3) {
-                finalResult = finalResult + "3";
+                finalResultBuilder.append("3");
 
             } else if (divider == 4) {
-                finalResult = finalResult + "4";
+                finalResultBuilder.append("4");
 
             } else if (divider == 5) {
-                finalResult = finalResult + "5";
+                finalResultBuilder.append("5");
 
             } else if (divider == 6) {
-                finalResult = finalResult + "6";
+                finalResultBuilder.append("6");
 
             } else if (divider == 7) {
-                finalResult = finalResult + "7";
+                finalResultBuilder.append("7");
 
             } else if (divider == 8) {
-                finalResult = finalResult + "8";
+                finalResultBuilder.append("8");
 
             } else if (divider == 9) {
-                finalResult = finalResult + "9";
+                finalResultBuilder.append("9");
 
             } else if (divider == 0) {
-                finalResult = finalResult + "0";
-
+                finalResultBuilder.append("0");
             }
         }
+        finalResult = finalResultBuilder.toString();
         return finalResult;
     }
 }
